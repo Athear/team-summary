@@ -10,13 +10,12 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+const employeeList = [];
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
-//TODO: will need inputs for: name,id,email,ROLE,office(manager),github(engineer),school(intern)
 //TODO: Should we only allow one manager?
-//TODO: need to only allow role-specific questions for the respective role
 const questions =[
     {
         type:"list",
@@ -66,8 +65,27 @@ const questions =[
 
 function init() {
     inquirer.prompt(questions)
-    .then((response)=>{console.log(response)})
+    .then((response)=>{
+        employeeList.push(response);
+
+        inquirer.prompt([{
+            type:"list",
+            name:"more",
+            message:"would you like to enter additional employees?",
+            choices:["yes","no"]
+        }])
+        .then((response)=>{
+            if(response.more==="yes"){
+                init();
+            }
+            else{
+                console.log(employeeList);
+            }
+        })
+
+    })
     .catch((err)=>{console.error(err)});
+
 }
 
 // After the user has input all employees desired, call the `render` function (required
