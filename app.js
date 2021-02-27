@@ -9,6 +9,7 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const { rejects } = require("assert");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -87,10 +88,6 @@ function doPrompts(employeeList){
     .catch((err)=>{console.error(err)});
 }
 
-function processesEmployees(employees){
-    console.log(employees); //DEBUG;
-}
-
 function getEmployeeObject(employee){
     let empObj;
     switch (employee.role){
@@ -108,6 +105,43 @@ function getEmployeeObject(employee){
     }
     return empObj;
 }
+
+function processesEmployees(employees){
+    console.log(employees); //DEBUG;
+    const renderedHTML = render(employees);
+}
+
+const ensureOutputDir = new Promise(function(resolve,reject){
+    if(!fs.existsSync(OUTPUT_DIR)){
+        fs.mkdir(OUTPUT_DIR,(err)=>{
+            if(err){
+               reject(err);
+            }
+            resolve("Directory created");
+        });
+    } else{
+        resolve("Directory exists");
+    }
+});
+
+//DEBUG; verify ensureOutputDir functions as expected
+function dirTest(){
+    ensureOutputDir
+    .then(response=>{
+        console.log(response);
+        fs.writeFile(path.join(OUTPUT_DIR, "test.txt"),"Test Text",(err)=>{
+            if(err){
+                console.error(err);
+            }
+        });
+    })
+    .catch(reject=>{console.log(reject)});
+};
+
+
+init();
+// dirTest();
+
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -128,5 +162,3 @@ function getEmployeeObject(employee){
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
-
-init()
