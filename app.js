@@ -61,7 +61,11 @@ const questions =[
 //TODO: In the loop, call a separate function (with await) to create the employee.
 //TODO: figure out what inquirer loop does
 
-
+function init() {
+    inquirer.prompt(questions)
+    .then((response)=>{console.log(response)})
+    .catch((err)=>{console.error(err)});
+}
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -82,3 +86,5 @@ const questions =[
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+init()
