@@ -63,9 +63,6 @@ const again = [{
     choices:["yes","no"]
 }]
 
-//TODO: Have while loop with a condition based on a separate Inquirer call
-//TODO: In the loop, call a separate function (with await) to create the employee.
-
 function init() {
     const employeeList = [];
     doPrompts(employeeList);
@@ -74,7 +71,8 @@ function init() {
 function doPrompts(employeeList){
     inquirer.prompt(questions)
     .then((response)=>{
-        employeeList.push(response); //List for holding all responses
+        let newEmployee = getEmployeeObject(response); //create an object for the employee
+        employeeList.push(newEmployee); //List for holding all employees
 
         inquirer.prompt(again)//check for more employees
         .then((response)=>{
@@ -92,6 +90,25 @@ function doPrompts(employeeList){
 function processesEmployees(employees){
     console.log(employees); //DEBUG;
 }
+
+function getEmployeeObject(employee){
+    let empObj;
+    switch (employee.role){
+        case 'manager':
+            empObj = new Manager(employee.name,employee.id,employee.email,employee.office);
+            break;
+        case 'engineer':
+            empObj = new Engineer(employee.name,employee.id,employee.email,employee.github);
+            break;
+        case 'intern':
+            empObj = new Intern(employee.name,employee.id,employee.email,employee.school);
+            break;
+        default:
+            empObj = new Employee(employee.name,employee.id,employee.email);
+    }
+    return empObj;
+}
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
