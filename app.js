@@ -16,12 +16,51 @@ const render = require("./lib/htmlRenderer");
 
 //TODO: will need inputs for: name,id,email,ROLE,office(manager),github(engineer),school(intern)
 //TODO: Should we only allow one manager?
+//TODO: need to only allow role-specific questions for the respective role
+const questions =[
+    {
+        type:"input",
+        name:"name",
+        message: "Input employee name"
+    },
+    {
+        type:"number",
+        name:"id",
+        message: "Input employee ID"
+    },
+    {
+        type:"input",
+        name:"email",
+        message: "Input employee email address"
+    },
+    {
+        type:"list",
+        name:"role",
+        message: "Select employee role",
+        choices: ["manager","engineer","intern"]
+    },
+    {
+        type:"number",
+        name:"office",
+        message: "Input manager's office number"
+    },
+    {
+        type:"input",
+        name:"github",
+        message: "Input engineer's github account name"
+    },
+    {
+        type:"input",
+        name:"school",
+        message: "Input intern's school"
+    }
 
-
+]
 
 //TODO: Have while loop with a condition based on a separate Inquirer call
 //TODO: In the loop, call a separate function (with await) to create the employee.
 //TODO: figure out what inquirer loop does
+
 
 
 // After the user has input all employees desired, call the `render` function (required
