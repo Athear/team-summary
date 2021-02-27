@@ -14,6 +14,16 @@ const render = require("./lib/htmlRenderer");
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
+//TODO: will need inputs for: name,id,email,ROLE,office(manager),github(engineer),school(intern)
+//TODO: Should we only allow one manager?
+
+
+
+//TODO: Have while loop with a condition based on a separate Inquirer call
+//TODO: In the loop, call a separate function (with await) to create the employee.
+//TODO: figure out what inquirer loop does
+
+
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
