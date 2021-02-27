@@ -19,6 +19,12 @@ const render = require("./lib/htmlRenderer");
 //TODO: need to only allow role-specific questions for the respective role
 const questions =[
     {
+        type:"list",
+        name:"role",
+        message: "Select employee role",
+        choices: ["manager","engineer","intern"]
+    },
+    {
         type:"input",
         name:"name",
         message: "Input employee name"
@@ -32,12 +38,6 @@ const questions =[
         type:"input",
         name:"email",
         message: "Input employee email address"
-    },
-    {
-        type:"list",
-        name:"role",
-        message: "Select employee role",
-        choices: ["manager","engineer","intern"]
     },
     {
         type:"number",
