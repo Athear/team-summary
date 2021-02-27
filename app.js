@@ -10,8 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-const employeeList = [];
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
@@ -56,38 +54,44 @@ const questions =[
         message: "Input intern's school",
         when: function(answers){return answers.role==="intern"}
     }
-
 ]
+
+const again = [{
+    type:"list",
+    name:"more",
+    message:"would you like to enter additional employees?",
+    choices:["yes","no"]
+}]
 
 //TODO: Have while loop with a condition based on a separate Inquirer call
 //TODO: In the loop, call a separate function (with await) to create the employee.
-//TODO: figure out what inquirer loop does
 
 function init() {
-    inquirer.prompt(questions)
-    .then((response)=>{
-        employeeList.push(response);
-
-        inquirer.prompt([{
-            type:"list",
-            name:"more",
-            message:"would you like to enter additional employees?",
-            choices:["yes","no"]
-        }])
-        .then((response)=>{
-            if(response.more==="yes"){
-                init();
-            }
-            else{
-                console.log(employeeList);
-            }
-        })
-
-    })
-    .catch((err)=>{console.error(err)});
-
+    const employeeList = [];
+    doPrompts(employeeList);
 }
 
+function doPrompts(employeeList){
+    inquirer.prompt(questions)
+    .then((response)=>{
+        employeeList.push(response); //List for holding all responses
+
+        inquirer.prompt(again)//check for more employees
+        .then((response)=>{
+            if(response.more==="yes"){
+                doPrompts(employeeList); //start the inquiry again.
+            }
+            else{
+                processesEmployees(employeeList) //go do the actual processing
+            }
+        })
+    })
+    .catch((err)=>{console.error(err)});
+}
+
+function processesEmployees(employees){
+    console.log(employees); //DEBUG;
+}
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
