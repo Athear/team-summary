@@ -143,7 +143,15 @@ function dirTest(){
     .catch(reject=>{console.log(reject)});
 };
 
+//DEBUG: objet array for quick validation of updated output templates.
+const dummyTeam = [
+    new Manager('Joe',5,'Joe@tops.com',5),
+    new Engineer('Kelly',6,'Kelly@tops.com','KellyCode'),
+    new Intern ('Mark',7,'mark@hotmail.com','U of M')
+  ]
+
 
 // dirTest();//DEBUG
+//processesEmployees(dummyTeam);//DEBUG: testing updated output templates
 init();
 
