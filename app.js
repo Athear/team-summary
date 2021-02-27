@@ -109,6 +109,15 @@ function getEmployeeObject(employee){
 function processesEmployees(employees){
     console.log(employees); //DEBUG;
     const renderedHTML = render(employees);
+    ensureOutputDir
+    .then(()=> {
+        fs.writeFile(outputPath,renderedHTML,(err)=>{
+            if(err){
+                console.error(err);
+            }
+        });
+    })
+    .catch((reject)=>console.error(reject));
 }
 
 const ensureOutputDir = new Promise(function(resolve,reject){
