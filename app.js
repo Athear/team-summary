@@ -42,17 +42,20 @@ const questions =[
     {
         type:"number",
         name:"office",
-        message: "Input manager's office number"
+        message: "Input manager's office number",
+        when: function(answers){return answers.role==="manager"}
     },
     {
         type:"input",
         name:"github",
-        message: "Input engineer's github account name"
+        message: "Input engineer's github account name",
+        when: function(answers){return answers.role==="engineer"}
     },
     {
         type:"input",
         name:"school",
-        message: "Input intern's school"
+        message: "Input intern's school",
+        when: function(answers){return answers.role==="intern"}
     }
 
 ]
