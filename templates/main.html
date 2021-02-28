@@ -10,6 +10,13 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c502137733.js"></script>
+    <style>
+        .employee-card{
+            width:18%;
+            margin:1%;
+            display:inline-block;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,7 +30,9 @@
     <div class="container">
         <div class="row">
             <div class="team-area col-12 d-flex justify-content-center">
-                {{ team }}
+                <div class="row">
+                    {{ team }}
+                </div>
             </div>
         </div>
     </div>
