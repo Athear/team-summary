@@ -145,13 +145,17 @@ function dirTest(){
 
 //DEBUG: objet array for quick validation of updated output templates.
 const dummyTeam = [
-    new Manager('Joe',5,'Joe@tops.com',5),
-    new Engineer('Kelly',6,'Kelly@tops.com','KellyCode'),
-    new Intern ('Mark',7,'mark@hotmail.com','U of M')
+    new Manager('Sam',5,'Sam@gumpath.com',5),
+    new Engineer('Kelly',6,'Kelly@gumpath.com','KellyCode'),
+    new Engineer('Dave',6,'Dave@gumpath.com','DaveSpace'),
+    new Engineer('Rily',6,'Rily@gumpath.com','Rily'),
+    new Intern ('Mark',7,'mark@hotmail.com','U of M'),
+    new Intern ('Ira',7,'ira@gmail.com','U of M'),
   ]
 
 
 // dirTest();//DEBUG
 //processesEmployees(dummyTeam);//DEBUG: testing updated output templates
 init();
+
 
