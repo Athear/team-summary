@@ -29,7 +29,7 @@ Run ```npm start``` to launch the application. Follow the on-screen prompts to c
 
 Once you have entered all members of your team, select 'no' when prompted. An HTML file will then be available in the output folder with a summary of your team.
 
-![My_Team](.\assets\My_Team.png)
+![My_Team](./assets/My_Team.png)
 
 ## Links
 
