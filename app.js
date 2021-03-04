@@ -103,7 +103,7 @@ function getEmployeeObject(employee){
 }
 
 function processesEmployees(employees){
-    console.log(employees); //DEBUG;
+    // console.log(employees); //DEBUG;
     const renderedHTML = render(employees);
     ensureOutputDir
     .then(()=> {
